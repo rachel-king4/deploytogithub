@@ -183,7 +183,7 @@
         $.ajax({
             "url": "/players",
             "method":"POST",
-            "data":JSON.stringify([player]),
+            "data":JSON.stringify(player),
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
