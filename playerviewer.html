@@ -129,7 +129,7 @@
         player.id  = rowElement.getAttribute('id')
         player.name = rowElement.cells[1].firstChild.textContent
         player.age = rowElement.cells[2].firstChild.textContent
-        player.nationality = parseInt(rowElement.cells[3].firstChild.textContent,10)
+        player.nationality = rowElement.cells[3].firstChild.textContent,10
         return player
     }
     function setPlayerInRow(rowElement, player){
