@@ -96,7 +96,7 @@
         var rowElement = r.parentNode.parentNode;
         var index = rowElement.rowIndex;
         deletePlayerAjax(rowElement.getAttribute("id"));
-        tableElement.deleteRow(index);
+        tableElement.deleteRow(index);commit
     }
     function addPlayerToTable(player){
         var tableElement = document.getElementById('playerTable')
@@ -129,7 +129,7 @@
         player.id  = rowElement.getAttribute('id')
         player.name = rowElement.cells[1].firstChild.textContent
         player.age = rowElement.cells[2].firstChild.textContent
-        book.nationality = parseInt(rowElement.cells[3].firstChild.textContent,10)
+        player.nationality = parseInt(rowElement.cells[3].firstChild.textContent,10)
         return player
     }
     function setPlayerInRow(rowElement, player){
@@ -148,14 +148,14 @@
         form.querySelector('input[name="nationality"]').value= player.nationality
         return player
     }
-    function getBookFromForm(){
+    function getPlayerFromForm(){
         var form = document.getElementById('createUpdateForm')
         var player = {}
         player.id = form.querySelector('input[name="id"]').value
         player.name = form.querySelector('input[name="name"]').value
         player.age = form.querySelector('input[name="age"]').value
         player.nationality = parseInt(form.querySelector('input[name="nationality"]').value,10)
-        console.log(JSON.stringify(book))
+        console.log(JSON.stringify(player))
         return player
     }
     function getAllAjax(){
