@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> view Books</title>
+        <title> view Players</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,9 +26,9 @@
         <div id='createUpdateForm' style="display: none">
                 <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Player</h2>
                 <input type="hidden" name="id"/>
-                Title <input type="text" name="name" /><br/>
-                Author <input type="number" name="age"/> <br/>
-                Price <input type="text" name="nationality"/> <br/>
+                Name <input type="text" name="name" /><br/>
+                Age <input type="number" name="age"/> <br/>
+                Nationality <input type="text" name="nationality"/> <br/>
                 <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
                 <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
         </div>
@@ -99,7 +99,7 @@
         tableElement.deleteRow(index);
     }
     function addPlayerToTable(player){
-        var tableElement = document.getElementById('PlayerTable')
+        var tableElement = document.getElementById('playerTable')
         var rowElement = tableElement.insertRow(-1)
         rowElement.setAttribute('id',player.id)
         var cell1 = rowElement.insertCell(0);

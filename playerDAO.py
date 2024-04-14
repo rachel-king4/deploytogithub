@@ -58,7 +58,7 @@ class PlayerDAO:
 
     def create(self, player):
         cursor = self.getcursor()
-        sql="insert into player (name,age, nationality) values (%s,%s,%s)"
+        sql="insert into player (name, age, nationality) values (%s,%s,%s)"
         values = (player.get("name"), player.get("age"), player.get("nationality"))
         cursor.execute(sql, values)
 
