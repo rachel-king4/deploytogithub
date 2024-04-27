@@ -58,8 +58,8 @@ class PlayerDAO:
 
     def create(self, player):
         cursor = self.getcursor()
-        sql="insert into player (name, age, nationality) values (%s,%s,%s)"
-        values = (player.get("name"), player.get("age"), player.get("nationality"))
+        sql="insert into player (name, age, nationality, club) values (%s,%s,%s,%s)"
+        values = (player.get("name"), player.get("age"), player.get("nationality"), player.get("club"))
         cursor.execute(sql, values)
 
         self.connection.commit()
@@ -71,9 +71,9 @@ class PlayerDAO:
 
     def update(self, id, player):
         cursor = self.getcursor()
-        sql="update player set name= %s,age=%s, nationality=%s  where id = %s"
+        sql="update player set name= %s,age=%s, nationality=%s, club=%s  where id = %s"
         
-        values = (player.get("name"), player.get("age"), player.get("nationality"),id)
+        values = (player.get("name"), player.get("age"), player.get("nationality"), player.get("club"),id)
         cursor.execute(sql, values)
         self.connection.commit()
         self.closeAll()
@@ -91,7 +91,7 @@ class PlayerDAO:
         print("delete done")
 
     def convertToDictionary(self, resultLine):
-        attkeys=['id','name','age', "nationality"]
+        attkeys=['id','name','age', "nationality", "club"]
         player = {}
         currentkey = 0
         for attrib in resultLine:

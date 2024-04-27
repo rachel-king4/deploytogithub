@@ -25,23 +25,24 @@ def findbyid(id):
         return jsonify(playerDAO.findByID(id))
 
 #create
-#curl -X POST -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" 
+#curl -X POST -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" http://XXX.X.X.X:XXXX/players
 @app.route('/players', methods=['POST'])
 def create():
-
         if not request.json:
                 abort(400)
+        
         # other checking 
         player = {
                 "name": request.json['name'],
                 "age": request.json['age'],
                 "nationality": request.json['nationality'],
+                "club": request.json['clulb'],
         }
         
         return jsonify(playerDAO.create(player))
 
 # update
-# curl -X PUT -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" 
+# curl -X PUT -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" http://XXX.X.X.X:XXXX/players/1
 
 @app.route('/players/<int:id>', methods=['PUT'])
 def update(id):
@@ -54,6 +55,8 @@ def update(id):
                 player["age"] = jsonstring["age"]
         if "nationality" in jsonstring:
                 player["nationality"] = jsonstring["nationality"]
+        if "club" in jsonstring:
+                player["club"] = jsonstring["club"]
         
         return jsonify(playerDAO.update(id, player))
 
