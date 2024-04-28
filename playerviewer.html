@@ -24,20 +24,7 @@
                 </tr>
                 
             </table>
-            <table class="table" id="playerbyClubTable">
-                <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>
-                            Age
-                        </th>
-                        <th>Nationality</th>
-                        <th>Club</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                </tr>
-                
-            </table>
+
         </div>
         <div id='createUpdateForm' style="display: none">
                 <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Player</h2>
@@ -49,12 +36,6 @@
                 <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
                 <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
         </div>
-        <div id='FindbyClubForm' style="display: none">
-            <h2><span id="FindbyLabel">Find by Club</span></h2>
-            <input type="hidden" name="id"/>
-            Club <input type="text" name="club"/> <br/>
-            <span><button id="dFindbyClubButton" onclick="doFindbyClub()">Search</button></span>
-    </div>
     </body>
     <script>
     function showCreate(){
@@ -74,18 +55,6 @@
         document.getElementById('playerTable').style.display="block"
         document.getElementById('createUpdateForm').style.display="none"
     }
-    function showFindAllbyClub(){
-        document.getElementById('showFindbyClubButton').style.display="none"
-        document.getElementById('playerTable').style.display="none"
-        document.getElementById('FindbyClubForm').style.display="block"
-
-        document.getElementById('doFindbyClubButton').style.display="block"
-    }
-    function showViewAllbyClub(){
-        document.getElementById('showFindbyClubButton').style.display="block"
-        document.getElementById('playerbyClubTable').style.display="block"
-        document.getElementById('FindbyClubForm').style.display="none"
-    }
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('playerTable').style.display="none"
@@ -103,16 +72,7 @@
         
         var player = getPlayerFromRow(rowElement)
         populateFormWithPlayer(player)
-    }
-    function doFindbyClub(){
-        var form = document.getElementById('FindbyClubForm')
-
-        var player = {}
-        player.club = form.querySelector('input[name="club"]').value
-        console.log(JSON.stringify(player))
-        getbyClubAjax(player)
-    
-    }    
+    } 
     function doCreate(){
         var form = document.getElementById('createUpdateForm')
 
@@ -162,22 +122,6 @@
         var cell7 = rowElement.insertCell(6);
         cell7.innerHTML = '<button onclick=doDelete(this)>Delete</button>'
 
-    }
-
-    function addPlayerToClubTable(player){
-        var tableElement = document.getElementById('playerTable')
-        var rowElement = tableElement.insertRow(-1)
-        rowElement.setAttribute('id',player.id)
-        var cell1 = rowElement.insertCell(0);
-        cell1.innerHTML = player.id
-        var cell2 = rowElement.insertCell(1);
-        cell2.innerHTML = player.name
-        var cell3 = rowElement.insertCell(2);
-        cell3.innerHTML = player.age
-        var cell4 = rowElement.insertCell(3);
-        cell4.innerHTML = player.nationality
-        var cell5 = rowElement.insertCell(4);
-        cell5.innerHTML = player.club
     }
 
 
@@ -247,27 +191,6 @@
 
     }
 
-    function getbyClubAjax(player){
-        $.ajax({
-            "url": "/club/<str:club>",
-            "method":"GET",
-            "data":"",
-            "dataType": "JSON",
-            "success":function(result){
-                //console.log(result);
-                for (player of result){
-                    addPlayerToClubTable(player)
-                    clearForm()
-                    showViewAllbyClub();
-                }
-                
-            },
-            "error":function(xhr,status,error){
-                console.log("error: "+status+" msg:"+error);
-            }
-        });
-
-    }
 
     function createPlayerAjax(player){
         //var player = {"name":"rachel", "age":1123,"nationality":"irish", "club": "liverpool"}

@@ -24,13 +24,6 @@ def getall():
 def findbyid(id):
         return jsonify(playerDAO.findByID(id))
 
-# find by club
-# curl http://XXX.X.X.X:XXXX/clubs
-
-@app.route('/players/<club>', methods=['GET'])
-def findbyclub(club):
-        return jsonify(playerDAO.findByclub(club))
-
 #create
 #curl -X POST -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" http://XXX.X.X.X:XXXX/players
 @app.route('/players', methods=['POST'])

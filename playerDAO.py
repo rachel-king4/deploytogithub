@@ -56,16 +56,6 @@ class PlayerDAO:
         self.closeAll()
         return returnvalue
     
-    def findByclub(self, club):
-        cursor = self.getcursor()
-        sql="select * from player where club = %s"
-        values = (club,)
-
-        cursor.execute(sql, values)
-        result = cursor.fetchone()
-        returnvalue = self.convertToDictionary(result)
-        self.closeAll()
-        return returnvalue
 
     def create(self, player):
         cursor = self.getcursor()
