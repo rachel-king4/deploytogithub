@@ -24,6 +24,20 @@
                 </tr>
                 
             </table>
+            <table class="table" id="playerbyClubTable">
+                <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>
+                            Age
+                        </th>
+                        <th>Nationality</th>
+                        <th>Club</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                </tr>
+                
+            </table>
         </div>
         <div id='createUpdateForm' style="display: none">
                 <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Player</h2>
@@ -69,7 +83,7 @@
     }
     function showViewAllbyClub(){
         document.getElementById('showFindbyClubButton').style.display="block"
-        document.getElementById('playerTable').style.display="block"
+        document.getElementById('playerbyClubTable').style.display="block"
         document.getElementById('FindbyClubForm').style.display="none"
     }
     function showUpdate(buttonElement){
