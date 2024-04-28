@@ -43,7 +43,7 @@ def create():
                 "name": request.json['name'],
                 "age": request.json['age'],
                 "nationality": request.json['nationality'],
-                "club": request.json['clulb'],
+                "club": request.json['club'],
         }
         
         return jsonify(playerDAO.create(player))

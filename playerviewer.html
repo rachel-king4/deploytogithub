@@ -36,10 +36,10 @@
                 <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
         </div>
         <div id='FindbyClubForm' style="display: none">
-            <h2><span id="createLabel">Find</span> <span id="updateLabel">by</span> Club</h2>
+            <h2><span id="FindbyLabel">Find by Club</span></h2>
             <input type="hidden" name="id"/>
             Club <input type="text" name="club"/> <br/>
-            <span><button id="doCreateButton" onclick="doFindbyClub()">Search</button></span>
+            <span><button id="dFindbyClubButton" onclick="doFindbyClub()">Search</button></span>
     </div>
     </body>
     <script>
@@ -64,6 +64,8 @@
         document.getElementById('showFindbyClubButton').style.display="none"
         document.getElementById('playerTable').style.display="none"
         document.getElementById('FindbyClubForm').style.display="block"
+
+        document.getElementById('doFindbyClubButton').style.display="block"
     }
     function showViewAllbyClub(){
         document.getElementById('showFindbyClubButton').style.display="block"
@@ -94,7 +96,7 @@
         var player = {}
         player.club = form.querySelector('input[name="club"]').value
         console.log(JSON.stringify(player))
-        createPlayerAjax(player)
+        getbyClubAjax(player)
     
     }    
     function doCreate(){
