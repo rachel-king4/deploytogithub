@@ -8,6 +8,7 @@
     <body>
         <h1>Players</h1>
         <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
         <div>
             <table class="table" id="playerTable">
                 <tr>
@@ -253,7 +254,7 @@
         var input, filter, table, tr, td, i;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
+        table = document.getElementById("playerTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];
