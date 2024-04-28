@@ -13,7 +13,7 @@
     <body style="background-image: radial-gradient(circle, #17001a 0%, #00d4ff 100%); color:whitesmoke">
         <h1>Football Players</h1>
         <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name">
+        <div> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name"></div>
         <div>
             <table class="table" id="playerTable" style= background-color:#e5ecec>
                 <tr>
@@ -48,7 +48,7 @@
         document.getElementById('playerTable').style.display="none"
         document.getElementById('createUpdateForm').style.display="block"
 
-        document.getElementById('createLabel').style.display="block"
+        document.getElementById('createLabel').style.display="inline"
         document.getElementById('updateLabel').style.display="none"
 
         document.getElementById('doCreateButton').style.display="block"
@@ -57,6 +57,7 @@
     }
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
+        document.getElementById('myInput').style.display="block"
         document.getElementById('playerTable').style.display="block"
         document.getElementById('createUpdateForm').style.display="none"
     }
