@@ -27,7 +27,7 @@ def findbyid(id):
 # find by club
 # curl http://XXX.X.X.X:XXXX/clubs
 
-@app.route('/clubs/<str:club>', methods=['GET'])
+@app.route('/players/<club>', methods=['GET'])
 def findbyclub(club):
         return jsonify(playerDAO.findByclub(club))
 
