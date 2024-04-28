@@ -251,7 +251,7 @@
     }
 
     function myFunction() {
-        var input, filter, table, tr, th, i, txtValue;
+        var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("playerTable");
@@ -263,7 +263,7 @@
             for(j=0; j< alltags.length; j++) {
             td = alltags[j];
             if (td) {
-                txtValue = th.textContent || th.innerText;
+                txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
                     j = alltags.length;
