@@ -1,18 +1,43 @@
 <html>
     <head>
-        <style> h1 {text-align: center;}
+        <style> h1 {text-align: center;
+                 font-family: "Rock Salt", cursive; }
                 table, th, td {
-                border: 1px solid black;
+                table-layout: fixed;
+                border: 1px solid rgb(12, 82, 21);
                 border-collapse: collapse;
-                margin: 8px 0;} </style>
+                border: 3px solid rgb(12, 82, 21);
+                margin: 8px 0;
+                text-align: center;}
+                th,td {padding: 20px;
+                    background: url(football.jpg)}
+                th {font-family: "helvetica neue", helvetica, arial, sans-serif; }
+                th {
+                font-family: "Rock Salt", cursive;
+                letter-spacing: 2px; } 
+                td { letter-spacing: 1px; }
+                tbody td { text-align: center; } 
+                tfoot th { text-align: right;}
+                th {
+                color: white;
+                text-shadow: 1px 1px 1px black }
+                thead th, tfoot th, tfoot td { background: linear-gradient(to bottom, rgba(50, 109, 35, 0.1), rgba(30, 127, 134, 0.5));
+                border: 3px solid rgb(5, 1, 51); }
+                tbody tr:nth-child(odd) { background-color: #274188; }
+                tbody tr:nth-child(even) { background-color: #6477b6; }
+                tbody tr { background-image: url(noise.png); }
+                table { background-color: #14136b; }
+                div {font-family: "Rock Salt", cursive;}
+                </style>
         <title> view Players</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" type="text/css">
     </head>
-    <body style="background-image: radial-gradient(circle, #17001a 0%, #00d4ff 100%); color:whitesmoke">
+    <body style="background-image: radial-gradient(circle, #051d10 0%, #45a355 100%); color:whitesmoke">
         <h1>Football Players</h1>
-        <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+        <div> <button id="showCreateButton" onclick="showCreate()">Add Player</button></div>
         <div> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name"></div>
         <div>
             <table class="table" id="playerTable" style= background-color:#e5ecec>
@@ -32,7 +57,7 @@
 
         </div>
         <div id='createUpdateForm' style="display: none">
-                <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Player</h2>
+                <h2><span id="createLabel">Create a</span> <span id="updateLabel">Update</span> Player</h2>
                 <input type="hidden" name="id"/>
                 Name <input type="text" name="name" /><br/>
                 Age <input type="number" name="age"/> <br/>
