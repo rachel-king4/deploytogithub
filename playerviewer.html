@@ -1,7 +1,7 @@
 <html>
     <head>
         <style> h1 {text-align: center;
-                 font-family: "Rock Salt", cursive; }
+                 font-family: "Impact"; }
                 table, th, td {
                 table-layout: fixed;
                 border: 1px solid rgb(12, 82, 21);
@@ -20,17 +20,17 @@
                 color: white;
                 text-shadow: 1px 1px 1px black;            
                 border: 3px solid rgb(5, 1, 51); }
-                tr:nth-child(odd) { background-color: #1b5c36; }
+                tr:nth-child(odd) { background-color: #1b5c36; }z
                 tr:nth-child(even) { background-color: #a0d8ac; }
                 div {font-family: "Rock Salt", cursive;}
-                caption {
-                font-family: "Rock Salt", cursive;
+                table caption {
+                font-family: "Copperplate Gothic", cursive;
                 padding: 20px;
                 font-style: italic;
                 font-size: 30px;
                 font-weight: bold;
                 caption-side: bottom;
-                color: whitesmoke;
+                color: rgb(231, 228, 228);
                 text-align: right;
                 letter-spacing: 1px;
                 }
@@ -46,9 +46,9 @@
         <div> <button id="showCreateButton" onclick="showCreate()">Add Player</button></div>
         <div> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name"></div>
         <div>
-            <table class="table" id="playerTable" style= background-color:#e5ecec>
+            <table class="table" id="playerTable">
                 <caption>
-                    A list of professional football players 
+                    A list of professional football players
                 </caption>
                 <tr>
                         <th><u>id</u></th>
