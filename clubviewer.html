@@ -61,7 +61,7 @@
         <h1>Football Clubs</h1>
         <div> <button id="showCreateButton" onclick="showCreate()">Add Club</button></div>
         <div> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name"></div>
-        <div id="button"><a href="clubviewer.html">View Player Table</a></div>
+        <div id="button"><a href="playerviewer.html">View Player Table</a></div>
         <div>
             <table class="table" id="clubTable">
                 <caption>
@@ -171,7 +171,7 @@
         club.id  = rowElement.getAttribute('id')
         club.name = rowElement.cells[1].firstChild.textContent
         club.number_of_trophies_won = parseInt(rowElement.cells[2].firstChild.textContent, 10)
-        club.country = rowElement.cells[3].firstChild.textContent,10
+        club.country = rowElement.cells[3].firstChild.textContent
         return club
     }
     function setClubInRow(rowElement, club){

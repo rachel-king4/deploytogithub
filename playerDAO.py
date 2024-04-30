@@ -54,7 +54,7 @@ class PlayerDAO:
         #print(results)
         for result in results:
             #print(result)
-            returnArray.append(self.convertToDictionary(result))
+            returnArray.append(self.convertToDictionaryClub(result))
         
         self.closeAll()
         return returnArray
@@ -77,7 +77,7 @@ class PlayerDAO:
 
         cursor.execute(sql, values)
         result = cursor.fetchone()
-        returnvalue = self.convertToDictionary(result)
+        returnvalue = self.convertToDictionaryClub(result)
         self.closeAll()
         return returnvalue
     
