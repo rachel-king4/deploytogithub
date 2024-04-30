@@ -51,131 +51,110 @@
                 background: #eff;
                 }
                 </style>
-        <title> view Players</title>
+        <title> view Clubs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" type="text/css">
     </head>
     <body style="background-image: radial-gradient(circle, #051d10 0%, #45a355 100%); color:whitesmoke">
-        <h1>Football Players</h1>
-        <div> <button id="showCreateButton" onclick="showCreate()">Add Player</button></div>
+        <h1>Football Clubs</h1>
+        <div> <button id="showCreateButton" onclick="showCreate()">Add Club</button></div>
         <div> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name"></div>
-        <div id="button"><a href="clubviewer.html">View Club Table</a></div>
+        <div id="button"><a href="clubviewer.html">View Player Table</a></div>
         <div>
-            <table class="table" id="playerTable">
+            <table class="table" id="clubTable">
                 <caption>
-                    A list of professional football players
+                    A list of professional football clubs
                 </caption>
                 <tr>
                         <th><u>id</u></th>
                         <th><u>Name</u></th>
-                        <th><u>Age</u></th>
-                        <th><u>Nationality</u></th>
-                        <th><u>Club</u></th>
-                        <th><u>Update</u></th>
+                        <th><u>No. of Trophies Won</u></th>
+                        <th><u>Country</u></th>
                         <th><u>Delete</u></th>
                 </tr>
                 
             </table>
 
         </div>
-        <div id='createUpdateForm' style="display: none">
-                <h2><span id="createLabel">Create a</span> <span id="updateLabel">Update</span> Player</h2>
+        <div id='createForm' style="display: none">
+                <h2><span id="createLabel">Create a</span> Club</h2>
                 <input type="hidden" name="id"/>
                 Name <input type="text" name="name" /><br/>
-                Age <input type="number" name="age"/> <br/>
-                Nationality <input type="text" name="nationality"/> <br/>
-                Club <input type="text" name="club"/> <br/>
+                No. of Trophies Won <input type="number" name="number_of_trophies_won"/> <br/>
+                Country <input type="text" name="country"/> <br/>
                 <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+
         </div>
     </body>
     <script>
     function showCreate(){
         document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('playerTable').style.display="none"
-        document.getElementById('createUpdateForm').style.display="block"
+        document.getElementById('clubTable').style.display="none"
+        document.getElementById('createForm').style.display="block"
 
         document.getElementById('createLabel').style.display="inline"
-        document.getElementById('updateLabel').style.display="none"
 
         document.getElementById('doCreateButton').style.display="block"
-        document.getElementById('doUpdateButton').style.display="none"
 
     }
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
         document.getElementById('myInput').style.display="block"
-        document.getElementById('playerTable').style.display="block"
-        document.getElementById('createUpdateForm').style.display="none"
+        document.getElementById('clubTable').style.display="block"
+        document.getElementById('createForm').style.display="none"
     }
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('playerTable').style.display="none"
-        document.getElementById('createUpdateForm').style.display="block"
+        document.getElementById('clubTable').style.display="none"
+        document.getElementById('createForm').style.display="block"
 
         document.getElementById('createLabel').style.display="none"
-        document.getElementById('updateLabel').style.display="inline"
 
         document.getElementById('doCreateButton').style.display="none"
-        document.getElementById('doUpdateButton').style.display="block"
 
 
         var rowElement = buttonElement.parentNode.parentNode
         // these is a way of finding the closest <tr> which would safer, closest()
         
-        var player = getPlayerFromRow(rowElement)
-        populateFormWithPlayer(player)
+        var club = getPlayerFromRow(rowElement)
+        populateFormWithPlayer(club)
     } 
     function doCreate(){
-        var form = document.getElementById('createUpdateForm')
+        var form = document.getElementById('createForm')
 
-        var player = {}
+        var club = {}
        
         player.name = form.querySelector('input[name="name"]').value
-        player.age = form.querySelector('input[name="age"]').value
-        player.nationality = form.querySelector('input[name="nationality"]').value
-        player.club = form.querySelector('input[name="club"]').value
-        console.log(JSON.stringify(player))
-        createPlayerAjax(player)
+        player.number_of_trophies_won = form.querySelector('input[name="number_of_trophies_won"]').value
+        player.country = form.querySelector('input[name="country"]').value
+        console.log(JSON.stringify(club))
+        createPlayerAjax(club)
     
     }
 
-    function doUpdate(){
-        var player = getPlayerFromForm();
-        var rowElement = document.getElementById(player.id);
-        updatePlayerAjax(player);
-        setPlayerInRow(rowElement,player);
-       
-        clearForm();
-        showViewAll();
-    }
     function doDelete(r){
-        var tableElement = document.getElementById('playerTable');
+        var tableElement = document.getElementById('clubTable');
         var rowElement = r.parentNode.parentNode;
         var index = rowElement.rowIndex;
-        deletePlayerAjax(rowElement.getAttribute("id"));
+        deleteClubAjax(rowElement.getAttribute("id"));
         tableElement.deleteRow(index);
     }
-    function addPlayerToTable(player){
-        var tableElement = document.getElementById('playerTable')
+    function addClubToTable(club){
+        var tableElement = document.getElementById('clubTable')
         var rowElement = tableElement.insertRow(-1)
-        rowElement.setAttribute('id',player.id)
+        rowElement.setAttribute('id',club.id)
         var cell1 = rowElement.insertCell(0);
         cell1.innerHTML = player.id
         var cell2 = rowElement.insertCell(1);
         cell2.innerHTML = player.name
         var cell3 = rowElement.insertCell(2);
-        cell3.innerHTML = player.age
+        cell3.innerHTML = player.number_of_trophies_won
         var cell4 = rowElement.insertCell(3);
-        cell4.innerHTML = player.nationality
+        cell4.innerHTML = player.country
         var cell5 = rowElement.insertCell(4);
-        cell5.innerHTML = player.club
-        var cell6 = rowElement.insertCell(5);
-        cell6.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
-        var cell7 = rowElement.insertCell(6);
-        cell7.innerHTML = '<button onclick=doDelete(this)>Delete</button>'
+        cell5.innerHTML = '<button onclick=doDelete(this)>Delete</button>'
 
     }
 
@@ -184,58 +163,53 @@
         var form = document.getElementById('createUpdateForm')
 
         form.querySelector('input[name="name"]').value=''
-        form.querySelector('input[name="age"]').value=''
-        form.querySelector('input[name="nationality"]').value=''
-        form.querySelector('input[name="club"]').value=''
+        form.querySelector('input[name="number_of_trophies_won"]').value=''
+        form.querySelector('input[name="country"]').value=''
     }
-    function getPlayerFromRow(rowElement){
+    function getClubFromRow(rowElement){
         var car ={}
-        player.id  = rowElement.getAttribute('id')
-        player.name = rowElement.cells[1].firstChild.textContent
-        player.age = parseInt(rowElement.cells[2].firstChild.textContent, 10)
-        player.nationality = rowElement.cells[3].firstChild.textContent,10
-        player.club = rowElement.cells[4].firstChild.textContent
-        return player
+        club.id  = rowElement.getAttribute('id')
+        club.name = rowElement.cells[1].firstChild.textContent
+        club.number_of_trophies_won = parseInt(rowElement.cells[2].firstChild.textContent, 10)
+        club.country = rowElement.cells[3].firstChild.textContent,10
+        return club
     }
-    function setPlayerInRow(rowElement, player){
+    function setClubInRow(rowElement, club){
         rowElement.cells[0].firstChild.textContent= player.id  
         rowElement.cells[1].firstChild.textContent= player.name 
-        rowElement.cells[2].firstChild.textContent= player.age
-        rowElement.cells[3].firstChild.textContent= player.nationality
-        rowElement.cells[4].firstChild.textContent= player.club
+        rowElement.cells[2].firstChild.textContent= player.number_of_trophies_won
+        rowElement.cells[3].firstChild.textContent= player.country
     }
-    function populateFormWithPlayer(player){
-        var form = document.getElementById('createUpdateForm')
+    function populateFormWithClub(club){
+        var form = document.getElementById('createForm')
         form.querySelector('input[name="id"]').disabled = true
 
-        form.querySelector('input[name="id"]').value  = player.id
-        form.querySelector('input[name="name"]').value= player.name
-        form.querySelector('input[name="age"]').value= player.age
-        form.querySelector('input[name="nationality"]').value= player.nationality
-        form.querySelector('input[name="club"]').value= player.club
-        return player
+        form.querySelector('input[name="id"]').value  = club.id
+        form.querySelector('input[name="name"]').value= club.name
+        form.querySelector('input[name="number_of_trophies_won"]').value= club.number_of_trophies_won
+        form.querySelector('input[name="country"]').value= club.country
+        return club
     }
-    function getPlayerFromForm(){
-        var form = document.getElementById('createUpdateForm')
-        var player = {}
-        player.id = form.querySelector('input[name="id"]').value
-        player.name = form.querySelector('input[name="name"]').value
-        player.age = parseInt(form.querySelector('input[name="age"]').value,10)
-        player.nationality = form.querySelector('input[name="nationality"]').value
-        player.club = form.querySelector('input[name="club"]').value
-        console.log(JSON.stringify(player))
-        return player
+    function getClubFromForm(){
+        var form = document.getElementById('createForm')
+        var club = {}
+        club.id = form.querySelector('input[name="id"]').value
+        club.name = form.querySelector('input[name="name"]').value
+        club.number_of_trophies_won = parseInt(form.querySelector('input[name="number_of_trophies_won"]').value,10)
+        player.country = form.querySelector('input[name="country"]').value
+        console.log(JSON.stringify(club))
+        return club
     }
-    function getAllAjax(){
+    function getAllClubsAjax(){
         $.ajax({
-            "url": "/players",
+            "url": "/clubs",
             "method":"GET",
             "data":"",
             "dataType": "JSON",
             "success":function(result){
                 //console.log(result);
-                for (player of result){
-                    addPlayerToTable(player);
+                for (club of result){
+                    addClubToTable(club);
                 }
                 
             },
@@ -247,19 +221,19 @@
     }
 
 
-    function createPlayerAjax(player){
+    function createClubAjax(club){
         //var player = {"name":"rachel", "age":1123,"nationality":"irish", "club": "liverpool"}
-        console.log(JSON.stringify(player));
+        console.log(JSON.stringify(club));
         $.ajax({
-            "url": "/players",
+            "url": "//clubs",
             "method":"POST",
-            "data":JSON.stringify(player),
+            "data":JSON.stringify(club),
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
                 //console.log(result);
-                player.id = result.id
-                addPlayerToTable(player)
+                club.id = result.id
+                addClubToTable(club)
                 clearForm()
                 showViewAll()
             },
@@ -268,29 +242,12 @@
             }
         });
     }
-    function updatePlayerAjax(player){
-        //var player = {"name":"rachel", "age":1123,"nationality":"irish", "club": "liverpool"}
-        console.log(JSON.stringify(player));
-        $.ajax({
-            "url": "/players/"+encodeURI(player.id),
-            "method":"PUT",
-            "data":JSON.stringify(player),
-            "dataType": "JSON",
-            contentType: "application/json; charset=utf-8",
-            "success":function(result){
-               // console.log(result);
-                  
-            },
-            "error":function(xhr,status,error){
-                console.log("error: "+status+" msg:"+error);
-            }
-        });
-    }
-    function deletePlayerAjax(id){
+
+    function deleteClubAjax(id){
         
         //console.log(JSON.stringify('deleting '+id));
         $.ajax({
-            "url": "/players/"+encodeURI(id),
+            "url": "/clubs/"+encodeURI(id),
             "method":"DELETE",
             "data":"",
             "dataType": "JSON",
@@ -308,7 +265,7 @@
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("playerTable");
+        table = document.getElementById("clubTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             // td = tr[i].getElementsByTagName("td")[0];
@@ -332,7 +289,7 @@
         }
 
 
-    getAllAjax();
+    getAllClubsAjax();
   
 
     

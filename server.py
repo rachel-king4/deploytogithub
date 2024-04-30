@@ -68,5 +68,31 @@ def delete(id):
         return jsonify(playerDAO.delete(id))
 
 
+# getall clubs
+# curl http://XXX.X.X.X:XXXX/players
+
+@app.route('/clubs', methods=['GET'])
+def getallclubs():
+        return jsonify(playerDAO.getAllClubs())
+
+#create c;ub
+#curl -X POST -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" http://XXX.X.X.X:XXXX/players
+@app.route('/clubs', methods=['POST'])
+def createclub():
+        if not request.json:
+                abort(400)
+        
+        # other checking 
+        club = {
+                "name": request.json['name'],
+                "number_of_trophies_won": request.json['number_of_trophies_won'],
+                "country": request.json['country'],
+        }
+        
+        return jsonify(playerDAO.createClub(club))
+
+
+
+
 if __name__ == "__main__":
     app.run(debug = True)
