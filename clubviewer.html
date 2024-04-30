@@ -102,25 +102,11 @@
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
         document.getElementById('myInput').style.display="block"
+        document.getElementById('button').style.display="block"
         document.getElementById('clubTable').style.display="block"
         document.getElementById('createForm').style.display="none"
     }
-    function showUpdate(buttonElement){
-        document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('clubTable').style.display="none"
-        document.getElementById('createForm').style.display="block"
 
-        document.getElementById('createLabel').style.display="none"
-
-        document.getElementById('doCreateButton').style.display="none"
-
-
-        var rowElement = buttonElement.parentNode.parentNode
-        // these is a way of finding the closest <tr> which would safer, closest()
-        
-        var club = getPlayerFromRow(rowElement)
-        populateFormWithPlayer(club)
-    } 
     function doCreate(){
         var form = document.getElementById('createForm')
 
@@ -160,7 +146,7 @@
 
 
     function clearForm(){
-        var form = document.getElementById('createUpdateForm')
+        var form = document.getElementById('createForm')
 
         form.querySelector('input[name="name"]').value=''
         form.querySelector('input[name="number_of_trophies_won"]').value=''
