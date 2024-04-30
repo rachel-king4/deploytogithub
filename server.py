@@ -75,8 +75,8 @@ def delete(id):
 def getallclubs():
         return jsonify(playerDAO.getAllClubs())
 
-#create c;ub
-#curl -X POST -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" http://XXX.X.X.X:XXXX/players
+#create club
+#curl -X POST -d "{\"name\":\"Roy Keane\", \"age\":25, \"nationality\":\"Irish\"}" http://XXX.X.X.X:XXXX/clubs
 @app.route('/clubs', methods=['POST'])
 def createclub():
         if not request.json:
