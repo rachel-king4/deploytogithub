@@ -91,7 +91,19 @@ def createclub():
         
         return jsonify(playerDAO.createClub(club))
 
+# find club by id
+# curl http://XXX.X.X.X:XXXX/clubs/1
 
+@app.route('/clubs/<int:id>', methods=['GET'])
+def findbyid(id):
+        return jsonify(playerDAO.findClubByID(id))
+
+# Delete club
+# curl -X DELETE  http://XXX.X.X.X:XXXX/clubs/1
+
+@app.route('/clubs/<int:id>', methods=['DELETE'])
+def delete(id):
+        return jsonify(playerDAO.deleteClub(id))
 
 
 if __name__ == "__main__":
