@@ -8,7 +8,7 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 
 @app.route('/')
 def index():
-        return "Hello world.\nAdd /playerviewer or /clubviewer to the end of the url in your browser to view the database tables..."
+        return "Hello world.Add /playerviewer.html or /clubviewer.html to the end of the url in your browser to view the database tables..."
 
 # getall
 # curl http://XXX.X.X.X:XXXX/players
