@@ -208,7 +208,6 @@
 
 
     function createClubAjax(club){
-        //var player = {"name":"rachel", "age":1123,"nationality":"irish", "club": "liverpool"}
         console.log(JSON.stringify(club));
         $.ajax({
             "url": "/clubs",
@@ -254,7 +253,6 @@
         table = document.getElementById("clubTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            // td = tr[i].getElementsByTagName("td")[0];
             alltags = tr[i].getElementsByTagName("td");
             isFound = false;
             for(j=0; j< alltags.length; j++) {
@@ -274,10 +272,7 @@
             }
         }
 
-
     getAllClubsAjax();
   
-
-    
     </script>
 </html>
